@@ -48,22 +48,13 @@ public class Minesweeper {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
         switch (choice) {
-            case 0 -> {
-                level = Level.EASY;}
-      
-            case 1 -> {
-                level = Level.MEDIUM;
-            }
-            case 2 -> {
-                level = Level.HARD;
-            }
+            case 0 -> level = Level.EASY;
+            case 1 -> level = Level.MEDIUM;
+            case 2 -> level = Level.HARD;
             default -> {
                 JOptionPane.showMessageDialog(frame, "Invalid choice. Defaulting to Easy level.");
                 level = Level.EASY;
             }
-
-           
-          
         }
         return level;
     }
@@ -97,8 +88,7 @@ public class Minesweeper {
         textPanel.add(textLabel);
         frame.add(textPanel, BorderLayout.NORTH);
 
-        boardPanel.setLayout(new GridLayout(level.rows, level.cols)); 
-        // boardPanel.setBackground(Color.green);
+        boardPanel.setLayout(new GridLayout(level.rows, level.cols));
         frame.add(boardPanel);
 
         for (int r = 0; r < level.rows; r++) {
@@ -129,7 +119,7 @@ public class Minesweeper {
                         }
                         // right click
                         else if (e.getButton() == MouseEvent.BUTTON3) {
-                            if (tile.getText() == "" && tile.isEnabled()) {
+                            if (tile.getText().equals("") && tile.isEnabled()) {
                                 if (flagsUsed > 0) {
                                     tile.setText("🚩");
                                     flagsUsed -= 1;
@@ -139,7 +129,7 @@ public class Minesweeper {
                                 }
                                
                                 
-                            } else if (tile.getText() == "🚩") {
+                            } else if (tile.getText().equals("🚩")) {
                                 tile.setText("");
                                 flagsUsed += 1;
                                 textLabel.setText(flagsUsed + " Flags Left");
